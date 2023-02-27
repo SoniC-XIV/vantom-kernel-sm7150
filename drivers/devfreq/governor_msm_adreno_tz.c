@@ -377,6 +377,11 @@ static inline int devfreq_get_freq_level(struct devfreq *devfreq,
 	return -EINVAL;
 }
 
+#ifdef CONFIG_ADRENO_IDLER
+extern int adreno_idler(struct devfreq_dev_status stats, struct devfreq *devfreq,
+		 unsigned long *freq);
+#endif
+
 #if 1
 
 // mapping gpu level calculated linear conservation half curve values into a
@@ -396,9 +401,6 @@ static int lvl_divider_map_2[] = {10,1,1,1,1,14,12    ,1,1};
 static int lvl_multiplicator_map_3[] = {10,1,1,1,1,11,9    ,1,1};
 static int lvl_divider_map_3[] = {10,1,1,1,1,15,13    ,1,1};
 
-#ifdef CONFIG_ADRENO_IDLER
-extern int adreno_idler(struct devfreq_dev_status stats, struct devfreq *devfreq,
-		 unsigned long *freq);
 #endif
 
 #ifdef CONFIG_SIMPLE_GPU_ALGORITHM
